@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { Toaster } from "sonner";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+import Header from "@/components/common/header";
+import ReactQueryProvider from "@/provider/react-query";
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -24,10 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${inter.variable} antialiased`}>
+        <ReactQueryProvider>
+          <Header />
+          {children}
+          <Toaster />
+        </ReactQueryProvider>
       </body>
     </html>
   );
