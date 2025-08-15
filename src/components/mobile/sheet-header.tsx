@@ -1,6 +1,13 @@
 "use client";
 
-import { BadgeDollarSignIcon, Loader2, LogIn, LogOutIcon } from "lucide-react";
+import {
+  BadgeDollarSignIcon,
+  BaggageClaim,
+  Loader2,
+  LogIn,
+  LogOutIcon,
+  ShoppingBasketIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 import {
@@ -78,7 +85,16 @@ const SheetHeaderMobile = () => {
             </div>
           </div>
           <Separator />
-          <div></div>
+          <div className="flex items-center">
+            <Button asChild variant={"ghost"}>
+              <Link href={"/buy"}>
+                <div className="flex items-center gap-2 font-semibold">
+                  <ShoppingBasketIcon size={16} />
+                  <span>Comprar</span>
+                </div>
+              </Link>
+            </Button>
+          </div>
           <Separator />
           <SheetFooter>
             <Button

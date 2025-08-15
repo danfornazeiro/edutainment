@@ -11,6 +11,7 @@ export const addPoints = async (userId: string) => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   if (!session) throw new Error("Unauthorized");
 
   await db
