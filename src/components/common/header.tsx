@@ -18,7 +18,13 @@ const Header = () => {
     return (
       <header className="flex items-center justify-between p-3">
         <Link href={"/"}>
-          <Image src={"/dolar.png"} width={85} height={85} alt="logo dolar" />
+          <Image
+            src={"/logo.png"}
+            width={85}
+            height={85}
+            alt="logo BrainCash"
+          />
+          <h1 className="text-xl font-bold">BrainCash</h1>
         </Link>
         <div className="flex items-center gap-3">
           <Button className="w-full" variant="outline" asChild>
@@ -33,10 +39,11 @@ const Header = () => {
   return (
     <header className="flex items-center justify-between p-3">
       <Link href={"/"}>
-        <Image src={"/dolar.png"} width={85} height={85} alt="logo dolar" />
+        <Image src={"/logo.png"} width={85} height={85} alt="logo BrainCash" />
+        <h1 className="text-xl font-bold">BrainCash</h1>
       </Link>
-      <div className="flex items-center gap-3">
-        <p className="flex items-center gap-2 rounded-4xl bg-gray-100 p-4 px-4 text-2xl font-bold">
+      <div className="flex items-center rounded-full bg-green-500 p-3">
+        <p className="flex items-center text-2xl font-bold text-white">
           <Image
             src={"/dolares.png"}
             alt="Icon credits"
