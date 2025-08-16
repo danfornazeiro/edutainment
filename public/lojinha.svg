@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Ícone de lojinha">
+  <defs>
+    <style>
+      :root {
+        --roof: #e53935;
+        --roof-light: #f44336;
+        --front: #8d6e63;
+        --door: #6d4c41;
+        --window: #90caf9;
+        --window-dark: #64b5f6;
+        --shadow: rgba(0,0,0,0.08);
+      }
+    </style>
+  </defs>
+
+  <!-- sombra base -->
+  <ellipse cx="64" cy="120" rx="42" ry="6" fill="var(--shadow)" />
+
+  <!-- toldo -->
+  <rect x="16" y="20" width="96" height="28" fill="var(--roof)" rx="4"/>
+  <rect x="28" y="20" width="16" height="28" fill="var(--roof-light)" />
+  <rect x="56" y="20" width="16" height="28" fill="var(--roof-light)" />
+  <rect x="84" y="20" width="16" height="28" fill="var(--roof-light)" />
+
+  <!-- corpo da loja -->
+  <rect x="24" y="48" width="80" height="60" rx="4" fill="var(--front)" />
+
+  <!-- porta -->
+  <rect x="56" y="72" width="16" height="36" rx="2" fill="var(--door)" />
+
+  <!-- janelas -->
+  <rect x="32" y="64" width="16" height="16" rx="2" fill="var(--window)" />
+  <rect x="80" y="64" width="16" height="16" rx="2" fill="var(--window-dark)" />
+</svg>

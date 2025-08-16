@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Ícone de casinha">
+  <defs>
+    <style>
+      :root {
+        --roof: #ff5a5a;
+        --body: #ffc107;
+        --door: #6d4c41;
+        --window: #8d6e63;
+        --shadow: rgba(0,0,0,0.08);
+      }
+    </style>
+  </defs>
+
+  <!-- base shadow -->
+  <ellipse cx="64" cy="116" rx="40" ry="6" fill="var(--shadow)" />
+
+  <!-- roof -->
+  <polygon points="16,56 64,16 112,56" fill="var(--roof)" stroke="var(--roof)" stroke-width="2" />
+
+  <!-- body -->
+  <rect x="28" y="56" width="72" height="56" rx="4" fill="var(--body)" />
+
+  <!-- round window -->
+  <circle cx="64" cy="76" r="10" fill="var(--window)" />
+
+  <!-- door -->
+  <rect x="54" y="88" width="20" height="24" rx="2" fill="var(--door)" />
+  <circle cx="70" cy="100" r="2" fill="#3e2723" />
+</svg>

@@ -17,7 +17,7 @@ export default function Home() {
         </h1>
         <p className="mb-8 max-w-md text-lg text-green-700 drop-shadow-sm">
           Aqui você vai aprender sobre finanças de um jeito divertido e fácil!
-          <span className="font-bold">Faça login para ver os conteúdos!</span>
+          <span className="font-bold"> Faça login para ver os conteúdos!</span>
         </p>
 
         {/* Botões de login */}

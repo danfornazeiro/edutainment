@@ -1,6 +1,7 @@
 "use client";
 
 import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 // Import da server action
@@ -16,10 +17,7 @@ const Teste = () => {
   const query = useQueryClient();
 
   const { data: credit } = useUserCredit(userId);
-
-  if (!session) {
-    return <h1>si lasque</h1>;
-  }
+  const router = useRouter();
 
   const handleVideoEnd = async () => {
     if (!userId) return;

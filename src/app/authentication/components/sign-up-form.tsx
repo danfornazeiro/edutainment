@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
@@ -54,7 +55,7 @@ const SignUpForm = () => {
       passwordConfirmation: "",
     },
   });
-
+  const router = useRouter();
   const onSubmit = async (values: FormValues) => {
     await authClient.signUp.email({
       name: values.name,
@@ -62,6 +63,7 @@ const SignUpForm = () => {
       password: values.password,
       fetchOptions: {
         onSuccess: () => {
+          router.push("/");
           toast.success("Conta criada com sucesso!");
         },
         onError: (error) => {
