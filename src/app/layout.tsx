@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 
 import Header from "@/components/common/header";
+import Footer from "@/components/mobile/footer";
 import ReactQueryProvider from "@/provider/react-query";
 
 const inter = Inter({
@@ -29,6 +30,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <Header />
           {children}
+          <Footer />
           <Toaster />
         </ReactQueryProvider>
       </body>
