@@ -28,18 +28,9 @@ export default function Home() {
   }
 
   return (
-    <div className="flex items-center justify-center pt-3">
-      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-        <div className="w-80 sm:w-96">
-          <CardVideos
-            cardTitle="Educação Financeira Ilustrada"
-            cardDescription="E começando do básico sobre como poupar dinheiro, como lidar com o dinheiro com inteligência financeira e gastar de forma consciente, nada mais justo do que explicar o que é educação financeira iniciando essa série de educação financeira.
-
-Educação financeira é para jovens, crianças, idosos, resumindo, para todas as idades, por isso sempre procuro trazer vídeos bem didáticos e simples de entender, dando uma breve aula sobre educação financeira, e finanças pessoais."
-            cardContent="Conteúdo aqui"
-          />
-        </div>
-        {/* Adicione mais cards conforme precisar */}
+    <div className="flex flex-col items-center px-4 pt-6">
+      <div className="grid w-full max-w-7xl gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <CardVideos />
       </div>
     </div>
   );

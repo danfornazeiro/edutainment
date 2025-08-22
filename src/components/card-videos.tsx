@@ -1,5 +1,9 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
 import {
   Card,
   CardContent,
@@ -11,37 +15,66 @@ import {
 
 import { Button } from "./ui/button";
 
-interface CardVideoProps {
-  cardTitle: string;
-  cardDescription: string;
-  cardContent: string;
+interface CourseProps {
+  id: string;
+  link: string;
+  name: string;
+  description: string;
+  image: string;
+  slug: string;
 }
 
-const CardVideos = ({
-  cardTitle,
-  cardDescription,
-  cardContent,
-}: CardVideoProps) => {
+const CardVideos = () => {
+  const [courses, setCourses] = useState<CourseProps[]>([]);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch("/api/courses");
+        const data: CourseProps[] = await response.json();
+        setCourses(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Erro ao buscar cursos:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
   return (
     <>
-      <Card className="mx-auto w-full max-w-md rounded-2xl bg-white shadow-lg transition-shadow duration-300 hover:shadow-xl">
-        <CardHeader className="border-b border-gray-200 pb-2">
-          <CardTitle className="text-xl font-bold text-gray-900">
-            {cardTitle}
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent className="space-y-3 px-6 py-4 text-gray-700">
-          <p>{cardContent}</p>
-          <CardDescription className="truncate text-sm text-gray-500">
-            {cardDescription}
-          </CardDescription>
-        </CardContent>
-
-        <CardFooter className="w-full border-t border-gray-200 px-6 pt-3">
-          <Button className="w-full">Assistir curso</Button>
-        </CardFooter>
-      </Card>
+      {courses.map((course) => (
+        <Card key={course.id} className="mx-auto w-full max-w-sm">
+          <CardHeader>
+            <CardTitle>{course.name}</CardTitle>
+            <CardDescription>
+              {course.description.length > 100
+                ? course.description.slice(0, 100) + "..."
+                : course.description}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Image
+              src={
+                course.image && course.image.startsWith("http")
+                  ? course.image.trim() // Remove espaços no início/fim
+                  : "/images/card-image.png"
+              }
+              alt={`Imagem do curso ${course.name}`}
+              width={300}
+              height={200}
+              className="rounded-md"
+            />
+          </CardContent>
+          <CardFooter>
+            <Link href={`/course/${course.slug}`}>
+              <Button variant="outline" className="w-full">
+                Acessar curso
+              </Button>
+            </Link>
+          </CardFooter>
+        </Card>
+      ))}
     </>
   );
 };

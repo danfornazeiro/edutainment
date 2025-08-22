@@ -4,6 +4,7 @@ import {
   pgTable,
   text,
   timestamp,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const userTable = pgTable("user", {
@@ -67,4 +68,26 @@ export const verificationTable = pgTable("verification", {
   updatedAt: timestamp("updated_at").$defaultFn(
     () => /* @__PURE__ */ new Date(),
   ),
+});
+
+export const coursesTable = pgTable("courses", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: text("course_name").notNull(),
+  description: text("course_description").notNull(),
+  slug: text("slug").notNull(),
+  image: text("image").notNull(),
+  createdAt: timestamp("created_at").$defaultFn(() => new Date()),
+});
+
+export const courseVideosTable = pgTable("course_videos", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  courseId: uuid("course_id")
+    .notNull()
+    .references(() => coursesTable.id, { onDelete: "cascade" }),
+  title: text("title").notNull(),
+  link: text("link").notNull(),
+  order: integer("order")
+    .notNull()
+    .$default(() => 0),
+  createdAt: timestamp("created_at").$defaultFn(() => new Date()),
 });

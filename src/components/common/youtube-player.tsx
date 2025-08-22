@@ -27,8 +27,8 @@ export default function YoutubePlayer({ videoId, onEnd }: YoutubePlayerProps) {
 
     window.onYouTubeIframeAPIReady = () => {
       playerRef.current = new window.YT.Player("player", {
-        width: "100%", // largura 100%
-        height: "100%", // altura 100% do container
+        width: "100%",
+        height: "100%",
         videoId: videoId,
         events: {
           onStateChange: (event: any) => {
@@ -42,7 +42,7 @@ export default function YoutubePlayer({ videoId, onEnd }: YoutubePlayerProps) {
   }, [videoId, onEnd]);
 
   return (
-    <div className="mx-auto w-full max-w-xs" style={{ aspectRatio: "16/9" }}>
+    <div className="mx-auto w-full max-w-4xl" style={{ aspectRatio: "16/9" }}>
       <div id="player" className="h-full w-full" />
     </div>
   );
