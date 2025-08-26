@@ -45,6 +45,7 @@ const CoursePage = async ({ params }: CoursePageProps) => {
         <p className="mb-6 text-center text-gray-600 lg:text-left">
           {course.description}
         </p>
+        <YoutubeVideo videoId={course.slug} />
 
         <div className="flex flex-col gap-8">
           {videos.map((video) => (
