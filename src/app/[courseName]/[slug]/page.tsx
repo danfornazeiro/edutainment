@@ -1,23 +1,22 @@
 import Link from "next/link";
 
 import YoutubeVideo from "@/components/common/YoutubeVideo";
-import { Button } from "@/components/ui/button";
 import { db } from "@/db";
 
 interface CoursePageProps {
-  params: { slug: string };
+  params: { slug: string; courseName: string };
 }
 
 interface Video {
   id: string;
   title: string;
   link: string;
+  videoId: string;
 }
 
 const CoursePage = async ({ params }: CoursePageProps) => {
-  const { slug } = params;
+  const { slug, courseName } = params;
 
-  // Buscar o curso
   const course = await db.query.coursesTable.findFirst({
     where: (coursesTable, { eq }) => eq(coursesTable.slug, slug),
   });
@@ -30,7 +29,6 @@ const CoursePage = async ({ params }: CoursePageProps) => {
     );
   }
 
-  // Buscar vídeos do curso
   const videos: Video[] = await db.query.courseVideosTable.findMany({
     where: (videosTable, { eq }) => eq(videosTable.courseId, course.id),
     orderBy: (videosTable, { asc }) => asc(videosTable.order),
@@ -45,16 +43,22 @@ const CoursePage = async ({ params }: CoursePageProps) => {
         <p className="mb-6 text-center text-gray-600 lg:text-left">
           {course.description}
         </p>
-        <YoutubeVideo videoId={course.slug} />
 
-        <div className="flex flex-col gap-8">
+        {videos.length > 0 && <YoutubeVideo videoId={videos[0].videoId} />}
+
+        <div className="mt-6 flex flex-col gap-4">
           {videos.map((video) => (
-            <div key={video.id} className="w-full">
-              <div className="relative aspect-video w-full">
-                <Button>
-                  <Link href={`course/${video.link}`}>Proximo</Link>
-                </Button>
-              </div>
+            <div
+              key={video.id}
+              className="flex items-center justify-between rounded bg-gray-100 p-4"
+            >
+              <span>{video.title}</span>
+              <Link
+                href={`/${courseName}/${slug}/video/${video.videoId}`}
+                className="text-blue-600"
+              >
+                Assistir
+              </Link>
             </div>
           ))}
         </div>

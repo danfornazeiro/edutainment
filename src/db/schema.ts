@@ -7,6 +7,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
+// -------------------- USERS --------------------
 export const userTable = pgTable("user", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
@@ -19,10 +20,10 @@ export const userTable = pgTable("user", {
     .notNull(),
   image: text("image"),
   createdAt: timestamp("created_at")
-    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .$defaultFn(() => new Date())
     .notNull(),
   updatedAt: timestamp("updated_at")
-    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .$defaultFn(() => new Date())
     .notNull(),
 });
 
@@ -62,30 +63,29 @@ export const verificationTable = pgTable("verification", {
   identifier: text("identifier").notNull(),
   value: text("value").notNull(),
   expiresAt: timestamp("expires_at").notNull(),
-  createdAt: timestamp("created_at").$defaultFn(
-    () => /* @__PURE__ */ new Date(),
-  ),
-  updatedAt: timestamp("updated_at").$defaultFn(
-    () => /* @__PURE__ */ new Date(),
-  ),
+  createdAt: timestamp("created_at").$defaultFn(() => new Date()),
+  updatedAt: timestamp("updated_at").$defaultFn(() => new Date()),
 });
 
+// -------------------- COURSES --------------------
 export const coursesTable = pgTable("courses", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: text("course_name").notNull(),
   description: text("course_description").notNull(),
-  slug: text("slug").notNull(),
+  slug: text("slug").notNull().unique(), // Slug único para URL
   image: text("image").notNull(),
   createdAt: timestamp("created_at").$defaultFn(() => new Date()),
 });
 
+// -------------------- VIDEOS --------------------
 export const courseVideosTable = pgTable("course_videos", {
   id: uuid("id").defaultRandom().primaryKey(),
   courseId: uuid("course_id")
     .notNull()
     .references(() => coursesTable.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
-  link: text("link").notNull(),
+  link: text("link").notNull(), // URL completa do YouTube
+  videoId: text("video_id").notNull(), // Código do YouTube (para embed)
   order: integer("order")
     .notNull()
     .$default(() => 0),
