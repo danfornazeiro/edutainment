@@ -4,7 +4,7 @@ import YoutubeVideo from "@/components/common/YoutubeVideo";
 import { db } from "@/db";
 
 interface CoursePageProps {
-  params: { slug: string; courseName: string };
+  params: Promise<{ slug: string; courseName: string }>;
 }
 
 interface Video {
@@ -15,7 +15,7 @@ interface Video {
 }
 
 const CoursePage = async ({ params }: CoursePageProps) => {
-  const { slug, courseName } = params;
+  const { slug, courseName } = await params;
 
   const course = await db.query.coursesTable.findFirst({
     where: (coursesTable, { eq }) => eq(coursesTable.slug, slug),
@@ -35,7 +35,7 @@ const CoursePage = async ({ params }: CoursePageProps) => {
   });
 
   return (
-    <div className="flex min-h-screen flex-col items-center space-y-8 bg-gray-50 px-4 py-8">
+    <div className="flex min-h-screen flex-col items-center space-y-8 px-4 py-8 pb-20">
       <div className="w-full max-w-4xl rounded-lg bg-white p-6 shadow-lg">
         <h1 className="mb-6 text-center text-2xl font-bold text-gray-800 lg:text-left">
           {course.name}

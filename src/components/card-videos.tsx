@@ -44,36 +44,38 @@ const CardVideos = () => {
   return (
     <>
       {courses.map((course) => (
-        <Card key={course.id} className="mx-auto w-full max-w-sm">
-          <CardHeader>
-            <CardTitle>{course.name}</CardTitle>
-            <CardDescription>
-              {course.description.length > 100
-                ? course.description.slice(0, 100) + "..."
-                : course.description}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Image
-              src={
-                course.image && course.image.startsWith("http")
-                  ? course.image.trim() // Remove espaços no início/fim
-                  : "/images/card-image.png"
-              }
-              alt={`Imagem do curso ${course.name}`}
-              width={300}
-              height={200}
-              className="rounded-md"
-            />
-          </CardContent>
-          <CardFooter>
-            <Link href={`/course/${course.slug}`}>
-              <Button variant="outline" className="w-full">
-                Acessar curso
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
+        <div key={course.id} className="pb-20">
+          <Card className="mx-auto w-full max-w-sm">
+            <CardHeader>
+              <CardTitle>{course.name}</CardTitle>
+              <CardDescription>
+                {course.description.length > 100
+                  ? course.description.slice(0, 100) + "..."
+                  : course.description}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Image
+                src={
+                  course.image && course.image.startsWith("http")
+                    ? course.image.trim() // Remove espaços no início/fim
+                    : "/images/card-image.png"
+                }
+                alt={`Imagem do curso ${course.name}`}
+                width={300}
+                height={200}
+                className="rounded-md"
+              />
+            </CardContent>
+            <CardFooter>
+              <Link href={`/course/${course.slug}`}>
+                <Button variant="outline" className="w-full">
+                  Acessar curso
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
+        </div>
       ))}
     </>
   );

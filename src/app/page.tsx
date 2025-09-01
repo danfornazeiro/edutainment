@@ -28,7 +28,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center px-4 pt-6">
+    <div className="mb-20 flex flex-col items-center bg-gray-50 px-4 pt-6">
       <div className="grid w-full max-w-7xl gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <CardVideos />
       </div>
