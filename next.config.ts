@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       "d4lgxe9bm8juw.cloudfront.net",
       "www.youtube.com",
       "img.youtube.com",
+      "cdn.pixabay.com",
     ],
   },
 };

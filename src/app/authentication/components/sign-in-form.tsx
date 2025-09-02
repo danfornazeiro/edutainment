@@ -27,8 +27,8 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
 const formSchema = z.object({
-  email: z.email("E-mail inválido."),
-  password: z.string("Senha inválida.").min(8, "Senha inválida."),
+  email: z.string().email("E-mail inválido."),
+  password: z.string().min(8, "Senha inválida."),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -55,15 +55,11 @@ const SignInForm = () => {
         onError: (ctx) => {
           if (ctx.error.code === "USER_NOT_FOUND") {
             toast.error("E-mail não encontrado.");
-            form.setError("email", {
-              message: "E-mail não encontrado.",
-            });
+            form.setError("email", { message: "E-mail não encontrado." });
           }
           if (ctx.error.code === "INVALID_EMAIL_OR_PASSWORD") {
             toast.error("E-mail ou senha inválido");
-            form.setError("email", {
-              message: "E-mail ou senha inválidos.",
-            });
+            form.setError("email", { message: "E-mail ou senha inválidos." });
           }
           toast.error(ctx.error.message);
         },
@@ -72,21 +68,24 @@ const SignInForm = () => {
   };
 
   const handleLoginWithGoogle = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-    });
+    await authClient.signIn.social({ provider: "google" });
   };
 
   return (
-    <>
-      <Card className="w-full">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
+      <Card className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
         <CardHeader>
-          <CardTitle>Entrar</CardTitle>
-          <CardDescription>Faça login para continuar.</CardDescription>
+          <CardTitle className="text-2xl sm:text-3xl">Entrar</CardTitle>
+          <CardDescription className="text-sm sm:text-base">
+            Faça login para continuar.
+          </CardDescription>
         </CardHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <CardContent className="grid gap-6">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 p-4 sm:space-y-8 sm:p-6"
+          >
+            <CardContent className="grid gap-4 sm:gap-6">
               <FormField
                 control={form.control}
                 name="email"
@@ -94,9 +93,12 @@ const SignInForm = () => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Digite seu email" {...field} />
+                      <Input
+                        placeholder="Digite seu email"
+                        {...field}
+                        className="w-full"
+                      />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
@@ -112,28 +114,27 @@ const SignInForm = () => {
                         placeholder="Digite sua senha"
                         type="password"
                         {...field}
+                        className="w-full"
                       />
                     </FormControl>
-
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </CardContent>
-            <CardFooter className="flex flex-col gap-2">
-              <Button type="submit" className="w-full">
+            <CardFooter className="flex flex-col gap-3 sm:gap-4">
+              <Button type="submit" className="w-full py-3 sm:py-4">
                 Entrar
               </Button>
               <Button
                 type="button"
-                className="w-full"
+                className="flex w-full items-center justify-center gap-2 py-3 sm:py-4"
                 onClick={handleLoginWithGoogle}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 533.5 544.3"
-                  width="100"
-                  height="100"
+                  className="h-5 w-5 sm:h-6 sm:w-6"
                 >
                   <path
                     fill="#4285F4"
@@ -152,13 +153,13 @@ const SignInForm = () => {
                     d="M272 107.7c37.6-.6 73.7 13.3 101.3 38.6l75.5-75.5C408.3 24.9 343.1-.2 272 0 167.4 0 75.1 60.1 30 149.2l91.6 69.9c21.2-63.4 80.5-110.6 150.4-110.6z"
                   />
                 </svg>
-                Login com o Google
+                Login com Google
               </Button>
             </CardFooter>
           </form>
         </Form>
       </Card>
-    </>
+    </div>
   );
 };
 

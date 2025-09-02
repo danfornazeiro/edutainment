@@ -1,6 +1,7 @@
 import {
   boolean,
   integer,
+  pgEnum,
   pgTable,
   text,
   timestamp,
@@ -90,4 +91,31 @@ export const courseVideosTable = pgTable("course_videos", {
     .notNull()
     .$default(() => 0),
   createdAt: timestamp("created_at").$defaultFn(() => new Date()),
+});
+
+// reawards
+
+export const RewardStatus = pgEnum("reward_status", [
+  "pending",
+  "purchased",
+  "canceled",
+]);
+
+export const rewardsTable = pgTable("rewards", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => userTable.id, { onDelete: "cascade" }),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  requiredCredits: integer("required_credits").notNull(),
+  status: RewardStatus("status")
+    .notNull()
+    .$defaultFn(() => "pending"), // valor default
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => new Date())
+    .notNull(),
 });

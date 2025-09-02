@@ -56,7 +56,7 @@ const Footer = () => {
         </Link>
       </div>
       <div>
-        <Link href="/">
+        <Link href="/buy  ">
           <div className="transition-transform duration-200 hover:scale-110 active:scale-95">
             <Image src={"/lojinha.svg"} width={45} height={45} alt="store" />
           </div>
