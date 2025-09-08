@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 
-interface ProductCardProps {
+interface RewardsCardProps {
   title: string;
   description: string;
   price: string;
@@ -12,7 +12,7 @@ interface ProductCardProps {
   status: string;
 }
 
-const Card: React.FC<ProductCardProps> = ({
+const Card: React.FC<RewardsCardProps> = ({
   title,
   description,
   price,
@@ -21,6 +21,7 @@ const Card: React.FC<ProductCardProps> = ({
   status,
 }) => {
   const isPurchased = status === "purchased";
+  const displayStatus = isPurchased ? "Comprado" : "Pendente";
 
   return (
     <div className="flex w-full max-w-sm flex-col overflow-hidden rounded-2xl bg-white shadow-md">
@@ -35,12 +36,33 @@ const Card: React.FC<ProductCardProps> = ({
       )}
       <div className="flex flex-1 flex-col gap-2 p-4">
         <h2 className="text-xl font-semibold">{title}</h2>
-        <p className="text-sm font-medium text-gray-500 capitalize">{status}</p>
+        <p className="text-sm font-medium text-gray-500 capitalize">
+          {displayStatus}
+        </p>
         <p className="flex-1 text-gray-600">{description}</p>
         <div className="mt-4 flex items-center justify-between">
-          <span className="text-lg font-bold">{price}</span>
-          <Button onClick={onBuy} disabled={isPurchased} className="px-4 py-2">
-            {isPurchased ? <CircleCheck /> : "Comprar"}
+          <span className="flex items-center gap-2 text-lg font-bold">
+            <Image
+              src={"/dolares.png"}
+              alt="Icon credits"
+              width={24}
+              height={24}
+            />
+            {price}
+          </span>
+          <Button
+            onClick={onBuy}
+            disabled={isPurchased}
+            className="flex items-center gap-2 px-4 py-2"
+          >
+            {isPurchased ? (
+              <>
+                <CircleCheck />
+                Comprado
+              </>
+            ) : (
+              "Comprar"
+            )}
           </Button>
         </div>
       </div>

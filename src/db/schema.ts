@@ -121,3 +121,47 @@ export const userRewardsTable = pgTable("user_rewards", {
     .references(() => rewardsTable.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").notNull().defaultNow(),
 });
+
+// -------------------- QUIZZES --------------------
+export const quizzesTable = pgTable("quizzes", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  courseId: uuid("course_id")
+    .notNull()
+    .references(() => coursesTable.id, { onDelete: "cascade" }),
+  title: text("title").notNull(),
+  description: text("description"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// -------------------- QUIZ QUESTIONS --------------------
+export const quizQuestionsTable = pgTable("quiz_questions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  quizId: uuid("quiz_id")
+    .notNull()
+    .references(() => quizzesTable.id, { onDelete: "cascade" }),
+  question: text("question").notNull(),
+  order: integer("order").default(0),
+});
+
+// -------------------- QUIZ ANSWERS --------------------
+export const quizAnswersTable = pgTable("quiz_answers", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  questionId: uuid("question_id")
+    .notNull()
+    .references(() => quizQuestionsTable.id, { onDelete: "cascade" }),
+  answer: text("answer").notNull(),
+  isCorrect: boolean("is_correct").default(false),
+});
+
+// -------------------- USER QUIZ RESULTS --------------------
+export const userQuizResultsTable = pgTable("user_quiz_results", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => userTable.id, { onDelete: "cascade" }),
+  quizId: uuid("quiz_id")
+    .notNull()
+    .references(() => quizzesTable.id, { onDelete: "cascade" }),
+  score: integer("score").notNull(),
+  completedAt: timestamp("completed_at").defaultNow(),
+});
