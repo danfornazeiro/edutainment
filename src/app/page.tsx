@@ -15,7 +15,7 @@ export default function Home() {
         <div className="absolute right-0 bottom-0 h-56 w-56 animate-ping rounded-full bg-green-300 opacity-30"></div>
 
         <h1 className="mb-4 text-4xl font-extrabold text-green-800 drop-shadow-lg">
-          💰 Bem-vindo ao DolarKids! 💰
+          💰 Bem-vindo ao BrainCash! 💰
         </h1>
         <p className="mb-8 max-w-md text-lg text-green-700 drop-shadow-sm">
           Aqui você vai aprender sobre finanças de um jeito divertido e fácil!
