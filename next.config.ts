@@ -1,11 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* Configurações do Next.js */
-  reactStrictMode: true, // opcional, mas recomendado
-  eslint: {
-    ignoreDuringBuilds: true, // ⚠️ desativa o ESLint no build
-  },
+  /* config options here */
   images: {
     domains: [
       "d4lgxe9bm8juw.cloudfront.net",
