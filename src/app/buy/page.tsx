@@ -3,6 +3,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
+import Mascote from "@/components/common/Mascote";
 import { useRewards } from "@/hooks/queries/use-get-rewards";
 import { useUserCredit } from "@/hooks/queries/use-user-get-credit";
 import { authClient } from "@/lib/auth-client";
@@ -105,6 +106,7 @@ const ShopPage = () => {
           </button>
         </div>
       )}
+      <Mascote image="/MacacoComprouOk.png" />
     </div>
   );
 };

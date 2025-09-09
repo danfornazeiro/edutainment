@@ -4,6 +4,7 @@ import { LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+import Mascote from "@/components/common/Mascote";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -100,6 +101,7 @@ const PageAccount = () => {
           </Card>
         </div>
       </div>
+      <Mascote image="/MacacoConquistaOk.png" />
     </div>
   );
 };

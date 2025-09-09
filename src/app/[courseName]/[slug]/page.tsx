@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import Mascote from "@/components/common/Mascote";
 import YoutubeVideo from "@/components/common/YoutubeVideo";
 import { db } from "@/db";
 
@@ -63,6 +64,7 @@ const CoursePage = async ({ params }: CoursePageProps) => {
           ))}
         </div>
       </div>
+      <Mascote image="/MacacoVideos.png" />
     </div>
   );
 };
