@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import CardVideos from "@/components/card-videos";
 import Mascote from "@/components/common/Mascote";
 import { authClient } from "@/lib/auth-client";
