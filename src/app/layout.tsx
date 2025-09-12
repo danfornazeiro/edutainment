@@ -17,22 +17,33 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "BrainCash",
   description: "Seu app de educação financeira",
+  manifest: "/manifest.json",
+  themeColor: "#0fb24b",
   icons: {
     icon: [
       {
-        url: "/logo.png",
+        url: "/icon512_rounded.png",
         type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+    apple: [
+      {
+        url: "/icon512_rounded.png",
+        type: "image/png",
+        sizes: "512x512",
       },
     ],
   },
 };
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body className={`${inter.variable} antialiased`}>
         <ReactQueryProvider>
           <Header />
