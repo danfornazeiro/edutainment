@@ -14,7 +14,7 @@ const Mascote = ({ image }: MascoteProps) => {
   const [mascote, setMascote] = useState(true);
   if (!mascote) return null;
   return (
-    <div className="fixed right-4 bottom-20 z-1000 cursor-pointer rounded-2xl bg-black/20 transition-transform">
+    <div className="fixed right-4 bottom-20 z-1000 cursor-pointer rounded-2xl transition-transform">
       <Button
         asChild
         size={"icon"}
